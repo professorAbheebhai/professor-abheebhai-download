@@ -3,119 +3,149 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MultiDownload Pro - Video Downloader</title>
+    <title>DownloadPro - Universal Media Downloader</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
+
         body {
-            background: #0b0e14;
+            font-family: 'Inter', sans-serif;
+            background: #0a0e17;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            background-image: radial-gradient(ellipse at 50% 0%, #141e33 0%, #0a0e17 70%);
         }
-        .container {
-            max-width: 900px;
+
+        .glass-card {
+            max-width: 1000px;
             width: 100%;
-            background: #141a24;
-            border-radius: 32px;
-            padding: 40px 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-            border: 1px solid #2a3344;
+            background: rgba(18, 26, 42, 0.85);
+            backdrop-filter: blur(20px);
+            border-radius: 48px;
+            padding: 45px 40px 35px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
         }
+
+        /* HEADER */
         .header {
             display: flex;
             align-items: center;
-            gap: 14px;
-            margin-bottom: 30px;
+            justify-content: space-between;
+            margin-bottom: 8px;
         }
-        .header i {
-            font-size: 36px;
-            color: #7c9bff;
-            background: #1e2a3a;
-            padding: 14px;
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, #4f7cff, #7c4dff);
             border-radius: 18px;
-            box-shadow: 0 4px 12px rgba(0, 20, 80, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(79, 124, 255, 0.3);
         }
-        .header h1 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #f0f4ff;
+
+        .logo h1 {
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #f0f4ff, #b0caff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
         }
-        .header span {
-            background: #2a3a5a;
-            padding: 4px 14px;
+
+        .badge {
+            background: rgba(79, 124, 255, 0.15);
+            padding: 6px 18px;
             border-radius: 40px;
             font-size: 13px;
             font-weight: 600;
-            color: #b0caff;
-            margin-left: 6px;
+            color: #7c9bff;
+            border: 1px solid rgba(79, 124, 255, 0.2);
+            letter-spacing: 0.3px;
         }
+
         .subtitle {
-            color: #8e9bb5;
+            color: #7688b0;
             font-size: 15px;
-            margin-bottom: 28px;
+            font-weight: 400;
+            margin: 12px 0 32px 0;
             padding-left: 4px;
-            border-left: 3px solid #3b5b9a;
-            padding-left: 16px;
-        }
-        .input-section {
-            background: #1c2533;
-            border-radius: 20px;
-            padding: 20px 24px;
-            border: 1px solid #2d384b;
-            margin-bottom: 30px;
-        }
-        .input-label {
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #bcc9e6;
-            font-weight: 500;
+        }
+
+        .subtitle i {
+            color: #4f7cff;
             font-size: 14px;
-            margin-bottom: 12px;
         }
-        .input-label i {
-            color: #7c9bff;
-        }
-        .url-input-wrapper {
+
+        /* INPUT SECTION */
+        .input-wrapper {
+            background: rgba(12, 18, 30, 0.6);
+            border-radius: 24px;
+            padding: 8px 8px 8px 24px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
             display: flex;
-            flex-wrap: wrap;
+            align-items: center;
             gap: 12px;
+            transition: 0.3s;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
-        .url-input-wrapper input {
+
+        .input-wrapper:focus-within {
+            border-color: rgba(79, 124, 255, 0.4);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 4px rgba(79, 124, 255, 0.08);
+        }
+
+        .input-wrapper i {
+            color: #4f6a9a;
+            font-size: 18px;
+        }
+
+        .input-wrapper input {
             flex: 1;
-            min-width: 200px;
-            background: #0f1622;
-            border: 1px solid #2d3b52;
-            border-radius: 14px;
-            padding: 16px 20px;
-            color: #e8edff;
-            font-size: 15px;
-            outline: none;
-            transition: 0.2s;
-        }
-        .url-input-wrapper input:focus {
-            border-color: #5f7fd9;
-            box-shadow: 0 0 0 3px rgba(79, 122, 255, 0.2);
-        }
-        .url-input-wrapper input::placeholder {
-            color: #57647a;
-        }
-        .btn-primary {
-            background: #3b5ecc;
+            background: transparent;
             border: none;
-            border-radius: 14px;
-            padding: 16px 32px;
-            font-weight: 600;
+            padding: 16px 0;
+            color: #e8edff;
+            font-size: 16px;
+            font-weight: 400;
+            outline: none;
+            min-width: 150px;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #44567a;
+            font-weight: 400;
+        }
+
+        .btn-fetch {
+            background: linear-gradient(135deg, #4f7cff, #7c4dff);
+            border: none;
+            border-radius: 18px;
+            padding: 14px 36px;
+            font-weight: 700;
             font-size: 15px;
             color: white;
             display: flex;
@@ -123,105 +153,190 @@
             gap: 10px;
             cursor: pointer;
             transition: 0.2s;
-            box-shadow: 0 4px 14px rgba(48, 88, 212, 0.35);
+            white-space: nowrap;
+            box-shadow: 0 4px 16px rgba(79, 124, 255, 0.3);
         }
-        .btn-primary:hover {
-            background: #4a6fe0;
+
+        .btn-fetch:hover {
             transform: scale(1.02);
+            box-shadow: 0 6px 24px rgba(79, 124, 255, 0.45);
         }
-        .btn-primary i {
-            font-size: 16px;
-        }
-        .btn-primary:disabled {
-            opacity: 0.6;
+
+        .btn-fetch:disabled {
+            opacity: 0.5;
             cursor: not-allowed;
             transform: none;
         }
 
-        .quality-section {
+        /* STATUS */
+        .status-bar {
+            margin-top: 20px;
+            padding: 14px 20px;
+            background: rgba(12, 18, 30, 0.4);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 14px;
+            color: #8a9ec9;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            min-height: 56px;
+        }
+
+        .status-bar .spinner {
+            width: 22px;
+            height: 22px;
+            border: 3px solid rgba(79, 124, 255, 0.15);
+            border-top: 3px solid #4f7cff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .status-bar .status-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .status-bar .status-text {
+            flex: 1;
+        }
+
+        /* RESULTS SECTION */
+        .results-section {
             display: none;
-            margin: 30px 0 20px;
-            background: #1a2332;
-            border-radius: 20px;
-            padding: 20px 24px;
-            border: 1px solid #2a354b;
+            margin-top: 30px;
+            animation: slideUp 0.4s ease;
         }
-        .quality-section.active {
+
+        .results-section.active {
             display: block;
-            animation: fadeUp 0.3s ease;
         }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .quality-header {
+
+        .results-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
-        }
-        .quality-header h3 {
-            color: #d6e0ff;
-            font-weight: 600;
-            font-size: 17px;
-        }
-        .quality-header small {
-            color: #6d7e9e;
-            font-size: 13px;
-            background: #111a26;
-            padding: 4px 12px;
-            border-radius: 30px;
-        }
-        .quality-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 12px;
-        }
-        .quality-card {
-            background: #0f1724;
-            border-radius: 16px;
-            padding: 16px 12px;
-            text-align: center;
-            border: 1px solid #29354b;
-            cursor: pointer;
-            transition: 0.15s;
-        }
-        .quality-card:hover {
-            background: #1b263b;
-            border-color: #4f6fc9;
-            transform: translateY(-2px);
-        }
-        .quality-card i {
-            font-size: 26px;
-            color: #7a98f0;
-            margin-bottom: 6px;
-            display: block;
-        }
-        .quality-card .label {
-            color: #b4c4ec;
-            font-weight: 500;
-            font-size: 15px;
-        }
-        .quality-card .size {
-            color: #6a7d9e;
-            font-size: 12px;
-            margin-top: 4px;
-        }
-        .quality-card.selected {
-            border-color: #5f7fd9;
-            background: #1f2d47;
-            box-shadow: 0 0 0 2px rgba(79, 122, 255, 0.25);
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .download-btn-wrapper {
-            margin-top: 22px;
-            text-align: center;
+        .results-header h3 {
+            color: #d6e0ff;
+            font-weight: 700;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
+
+        .results-header h3 i {
+            color: #4f7cff;
+        }
+
+        .results-header .source-tag {
+            background: rgba(79, 124, 255, 0.12);
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #7c9bff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(79, 124, 255, 0.1);
+        }
+
+        .quality-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 14px;
+        }
+
+        .quality-item {
+            background: rgba(12, 18, 30, 0.5);
+            border-radius: 18px;
+            padding: 20px 16px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            cursor: pointer;
+            transition: 0.2s;
+            position: relative;
+        }
+
+        .quality-item:hover {
+            background: rgba(22, 32, 54, 0.7);
+            border-color: rgba(79, 124, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .quality-item.selected {
+            border-color: #4f7cff;
+            background: rgba(79, 124, 255, 0.08);
+            box-shadow: 0 0 0 2px rgba(79, 124, 255, 0.15), inset 0 0 20px rgba(79, 124, 255, 0.03);
+        }
+
+        .quality-item .icon {
+            font-size: 32px;
+            color: #4f7cff;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .quality-item .label {
+            color: #e0e8ff;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .quality-item .size {
+            color: #5d739b;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .quality-item .check {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            color: #4f7cff;
+            font-size: 14px;
+            opacity: 0;
+            transition: 0.2s;
+        }
+
+        .quality-item.selected .check {
+            opacity: 1;
+        }
+
+        .download-row {
+            margin-top: 28px;
+            display: flex;
+            justify-content: center;
+        }
+
         .btn-download {
-            background: #0f8b5c;
+            background: linear-gradient(135deg, #00c775, #00a862);
             border: none;
             border-radius: 40px;
-            padding: 16px 48px;
+            padding: 18px 60px;
             font-weight: 700;
             font-size: 17px;
             color: white;
@@ -230,420 +345,439 @@
             gap: 14px;
             cursor: pointer;
             transition: 0.2s;
-            box-shadow: 0 6px 18px rgba(13, 128, 81, 0.35);
+            box-shadow: 0 6px 24px rgba(0, 199, 117, 0.3);
         }
+
         .btn-download:hover {
-            background: #13a06b;
-            transform: scale(1.02);
+            transform: scale(1.03);
+            box-shadow: 0 8px 32px rgba(0, 199, 117, 0.45);
         }
+
         .btn-download:disabled {
-            opacity: 0.5;
+            opacity: 0.4;
             cursor: not-allowed;
             transform: none;
         }
 
-        .status-area {
-            margin-top: 24px;
-            padding: 14px 18px;
-            background: #101926;
-            border-radius: 16px;
-            color: #a3b5d6;
-            font-size: 14px;
-            border-left: 3px solid #3b5ecc;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            min-height: 58px;
-        }
-        .status-area i {
-            color: #5f7fd9;
-            font-size: 18px;
-        }
-        .status-area .spinner {
-            width: 22px;
-            height: 22px;
-            border: 3px solid #1e2a3a;
-            border-top: 3px solid #5f7fd9;
-            border-radius: 50%;
-            animation: spin 0.9s linear infinite;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
+        /* FOOTER APIS */
         .footer-apis {
-            margin-top: 30px;
-            font-size: 12px;
-            color: #47556e;
+            margin-top: 35px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
             display: flex;
             flex-wrap: wrap;
-            gap: 10px 22px;
+            gap: 8px 14px;
             justify-content: center;
-            border-top: 1px solid #1f293b;
-            padding-top: 22px;
-        }
-        .footer-apis span {
-            background: #131d2b;
-            padding: 4px 14px;
-            border-radius: 30px;
-            border: 1px solid #253040;
         }
 
-        @media (max-width: 600px) {
-            .container { padding: 25px 16px; }
-            .header h1 { font-size: 22px; }
-            .url-input-wrapper input { min-width: 140px; }
-            .btn-primary { padding: 14px 22px; }
+        .footer-apis span {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 5px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            color: #4d6188;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-apis span i {
+            color: #4f6a9a;
+            font-size: 12px;
+        }
+
+        @media (max-width: 700px) {
+            .glass-card {
+                padding: 28px 18px 25px;
+                border-radius: 28px;
+            }
+            .logo h1 {
+                font-size: 24px;
+            }
+            .input-wrapper {
+                flex-wrap: wrap;
+                padding: 12px;
+                background: rgba(12, 18, 30, 0.8);
+            }
+            .input-wrapper input {
+                width: 100%;
+                padding: 12px 0;
+                font-size: 15px;
+            }
+            .btn-fetch {
+                width: 100%;
+                justify-content: center;
+                padding: 14px;
+            }
+            .quality-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            }
+            .btn-download {
+                width: 100%;
+                justify-content: center;
+                padding: 16px 30px;
+            }
+            .header {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="container" id="app">
-    <!-- Header -->
-    <div class="header">
-        <i class="fas fa-cloud-upload-alt"></i>
-        <h1>MultiDownload <span>Pro</span></h1>
-    </div>
-    <div class="subtitle">
-        <i class="fas fa-bolt" style="margin-right: 8px; color: #5f7fd9;"></i>
-        Paste any link — Movies, YouTube, Shortlinks, Social
-    </div>
-
-    <!-- Input -->
-    <div class="input-section">
-        <div class="input-label">
-            <i class="fas fa-link"></i> Enter URL
+    <div class="glass-card">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+                <h1>Download<span style="background:linear-gradient(135deg,#7c9bff,#4f7cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Pro</span></h1>
+            </div>
+            <span class="badge"><i class="fas fa-rocket"></i> v2.0</span>
         </div>
-        <div class="url-input-wrapper">
-            <input type="text" id="urlInput" placeholder="https://example.com/video or movie page ..." />
-            <button class="btn-primary" id="fetchBtn">
-                <i class="fas fa-search"></i> Fetch
+
+        <div class="subtitle">
+            <i class="fas fa-circle" style="font-size:6px;color:#4f7cff;"></i>
+            Paste any link — Movies, YouTube, Shortlinks, Social Media
+        </div>
+
+        <!-- INPUT -->
+        <div class="input-wrapper">
+            <i class="fas fa-link"></i>
+            <input type="text" id="urlInput" placeholder="https://youtube.com/watch?v=... or any video URL" />
+            <button class="btn-fetch" id="fetchBtn">
+                <i class="fas fa-arrow-right"></i> Fetch
             </button>
         </div>
-    </div>
 
-    <!-- Quality Selection -->
-    <div class="quality-section" id="qualitySection">
-        <div class="quality-header">
-            <h3><i class="fas fa-sliders-h" style="margin-right: 10px;"></i>Available Qualities</h3>
-            <small id="sourceLabel">source: hdhub</small>
+        <!-- STATUS -->
+        <div class="status-bar" id="statusBar">
+            <i class="fas fa-circle status-icon" style="color:#4f7cff;font-size:10px;"></i>
+            <span class="status-text" id="statusText">Ready — paste a link and hit Fetch</span>
         </div>
-        <div class="quality-grid" id="qualityGrid">
-            <!-- dynamically inserted -->
+
+        <!-- RESULTS -->
+        <div class="results-section" id="resultsSection">
+            <div class="results-header">
+                <h3><i class="fas fa-layer-group"></i> Available Qualities</h3>
+                <span class="source-tag" id="sourceTag">source</span>
+            </div>
+            <div class="quality-grid" id="qualityGrid"></div>
+            <div class="download-row">
+                <button class="btn-download" id="downloadBtn" disabled>
+                    <i class="fas fa-download"></i> Download Selected
+                </button>
+            </div>
         </div>
-        <div class="download-btn-wrapper">
-            <button class="btn-download" id="downloadBtn" disabled>
-                <i class="fas fa-download"></i> Download Selected
-            </button>
+
+        <!-- FOOTER -->
+        <div class="footer-apis">
+            <span><i class="fas fa-film"></i> HDHub</span>
+            <span><i class="fas fa-link"></i> GadgetsWeb</span>
+            <span><i class="fab fa-youtube"></i> SaveTube</span>
+            <span><i class="fas fa-download"></i> VKr</span>
+            <span><i class="fas fa-cube"></i> Cobalt</span>
+            <span><i class="fas fa-shield-alt"></i> Gateway</span>
         </div>
     </div>
 
-    <!-- Status -->
-    <div class="status-area" id="statusArea">
-        <i class="fas fa-info-circle"></i>
-        <span id="statusText">Ready — paste a link and fetch</span>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer-apis">
-        <span><i class="fas fa-film"></i> HDHub</span>
-        <span><i class="fas fa-link"></i> GadgetsWeb</span>
-        <span><i class="fab fa-youtube"></i> SaveTube</span>
-        <span><i class="fas fa-download"></i> VKr</span>
-        <span><i class="fas fa-cube"></i> Cobalt</span>
-        <span><i class="fas fa-shield-alt"></i> Gateway</span>
-    </div>
-</div>
-
-<script>
-    // ============================================================
-    //  JUNAID-STYLE APIS (exactly as provided)
-    // ============================================================
-    const APIS = {
-        hdhub: {
-            url: 'https://hdhub4u.catering/find',
-            method: 'GET',
-            params: { url: 'MOVIE_PAGE_URL' }
-        },
-        gadgetsweb: {
-            url: 'https://gadgetsweb.com/links/',
-            method: 'POST',
-            body: { url: 'SHORTLINK_URL' }
-        },
-        savetube: {
-            url: 'https://api.savetube.me/api',
-            method: 'POST',
-            body: { url: 'VIDEO_URL' }
-        },
-        vkr: {
-            url: 'https://vkrdownloader.xyz/server/',
-            method: 'GET',
-            params: { api_key: 'vkrdownloader', vkr: 'VIDEO_URL' }
-        },
-        cobalt: {
-            url: 'https://api.cobalt.tools/api/json',
-            method: 'POST',
-            body: { url: 'VIDEO_URL' }
-        },
-        junaidGateway: {
-            url: 'https://junaidv3.freepage.cc/view.php',
-            method: 'GET',
-            params: { site: 'multidownload', i: '2' }
-        }
-    };
-
-    // ============================================================
-    //  DOM refs
-    // ============================================================
-    const urlInput = document.getElementById('urlInput');
-    const fetchBtn = document.getElementById('fetchBtn');
-    const qualitySection = document.getElementById('qualitySection');
-    const qualityGrid = document.getElementById('qualityGrid');
-    const downloadBtn = document.getElementById('downloadBtn');
-    const statusText = document.getElementById('statusText');
-    const sourceLabel = document.getElementById('sourceLabel');
-
-    let currentQualities = [];
-    let selectedQualityIndex = -1;
-    let currentDownloadUrl = '';
-
-    // ============================================================
-    //  Helper: status update
-    // ============================================================
-    function setStatus(msg, isError = false, isLoading = false) {
-        const icon = statusText.parentElement.querySelector('i');
-        if (isLoading) {
-            statusText.parentElement.innerHTML = `<div class="spinner"></div><span id="statusText">${msg}</span>`;
-        } else {
-            statusText.parentElement.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-info-circle'}"></i><span id="statusText">${msg}</span>`;
-        }
-        if (isError) {
-            statusText.parentElement.style.borderLeftColor = '#d95b5b';
-        } else {
-            statusText.parentElement.style.borderLeftColor = '#3b5ecc';
-        }
-    }
-
-    // ============================================================
-    //  Detect which API to use based on URL
-    // ============================================================
-    function detectApi(url) {
-        const u = url.toLowerCase();
-        if (u.includes('youtube.com') || u.includes('youtu.be')) return 'savetube';
-        if (u.includes('hdhub4u') || u.includes('hdhub')) return 'hdhub';
-        if (u.includes('gadgetsweb') || u.includes('hubcloud')) return 'gadgetsweb';
-        if (u.includes('instagram.com') || u.includes('facebook.com') || u.includes('twitter.com')) return 'cobalt';
-        // default fallback: try vkr or cobalt
-        return 'vkr';
-    }
-
-    // ============================================================
-    //  Fetch from API with proper params
-    // ============================================================
-    async function callApi(apiKey, url) {
-        const api = APIS[apiKey];
-        if (!api) throw new Error(`API ${apiKey} not found`);
-
-        let endpoint = api.url;
-        let options = { method: api.method, headers: { 'Accept': 'application/json' } };
-
-        if (api.method === 'GET') {
-            const params = new URLSearchParams();
-            if (api.params) {
-                for (let [key, val] of Object.entries(api.params)) {
-                    params.append(key, val === 'MOVIE_PAGE_URL' ? url : val === 'VIDEO_URL' ? url : val);
-                }
+    <script>
+        // ================================================================
+        //  APIS — JUNAID STYLE (exact endpoints)
+        // ================================================================
+        const APIS = {
+            hdhub: {
+                url: 'https://hdhub4u.catering/find',
+                method: 'GET',
+                params: { url: 'MOVIE_PAGE_URL' }
+            },
+            gadgetsweb: {
+                url: 'https://gadgetsweb.com/links/',
+                method: 'POST',
+                body: { url: 'SHORTLINK_URL' }
+            },
+            savetube: {
+                url: 'https://api.savetube.me/api',
+                method: 'POST',
+                body: { url: 'VIDEO_URL' }
+            },
+            vkr: {
+                url: 'https://vkrdownloader.xyz/server/',
+                method: 'GET',
+                params: { api_key: 'vkrdownloader', vkr: 'VIDEO_URL' }
+            },
+            cobalt: {
+                url: 'https://api.cobalt.tools/api/json',
+                method: 'POST',
+                body: { url: 'VIDEO_URL' }
+            },
+            junaidGateway: {
+                url: 'https://junaidv3.freepage.cc/view.php',
+                method: 'GET',
+                params: { site: 'multidownload', i: '2' }
             }
-            // for vkr we need to pass vkr param
-            if (apiKey === 'vkr') {
-                params.set('vkr', url);
+        };
+
+        // ================================================================
+        //  DOM REFS
+        // ================================================================
+        const urlInput = document.getElementById('urlInput');
+        const fetchBtn = document.getElementById('fetchBtn');
+        const statusText = document.getElementById('statusText');
+        const statusBar = document.getElementById('statusBar');
+        const resultsSection = document.getElementById('resultsSection');
+        const qualityGrid = document.getElementById('qualityGrid');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const sourceTag = document.getElementById('sourceTag');
+
+        let currentQualities = [];
+        let selectedIndex = -1;
+        let currentDownloadUrl = '';
+
+        // ================================================================
+        //  STATUS HELPER
+        // ================================================================
+        function setStatus(msg, type = 'info', isLoading = false) {
+            if (isLoading) {
+                statusBar.innerHTML = `
+                    <div class="spinner"></div>
+                    <span class="status-text">${msg}</span>
+                `;
+                return;
             }
-            endpoint += '?' + params.toString();
-        } else if (api.method === 'POST') {
-            let body = {};
-            if (api.body) {
-                for (let [key, val] of Object.entries(api.body)) {
-                    body[key] = val === 'MOVIE_PAGE_URL' ? url : val === 'VIDEO_URL' ? url : val === 'SHORTLINK_URL' ? url : val;
-                }
-            }
-            options.body = JSON.stringify(body);
-            options.headers['Content-Type'] = 'application/json';
-        }
-
-        const response = await fetch(endpoint, options);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        return await response.json();
-    }
-
-    // ============================================================
-    //  Parse qualities from different API responses
-    // ============================================================
-    function parseQualities(data, apiKey) {
-        let items = [];
-        if (apiKey === 'hdhub') {
-            // HDHub typically returns { data: { links: [{ quality, url }] } }
-            const links = data?.data?.links || data?.links || [];
-            if (Array.isArray(links)) {
-                items = links.map((l, i) => ({
-                    label: l.quality || l.resolution || `Quality ${i+1}`,
-                    url: l.url || l.download || l.link || '#',
-                    size: l.size || '—'
-                }));
-            }
-        } else if (apiKey === 'savetube' || apiKey === 'cobalt') {
-            // savetube/cobalt: returns { video: { qualities: { label, url } } }
-            const qualities = data?.video?.qualities || data?.qualities || data?.formats || [];
-            if (Array.isArray(qualities)) {
-                items = qualities.map((q, i) => ({
-                    label: q.quality || q.resolution || q.format || `Stream ${i+1}`,
-                    url: q.url || q.downloadUrl || q.link || '#',
-                    size: q.size || '—'
-                }));
-            } else if (data?.video?.url) {
-                items = [{ label: 'Video', url: data.video.url, size: data.video.size || '—' }];
-            }
-        } else if (apiKey === 'gadgetsweb') {
-            // gadgetsweb returns { data: { downloadLinks: [ { quality, link } ] } }
-            const links = data?.data?.downloadLinks || data?.downloadLinks || data?.links || [];
-            if (Array.isArray(links)) {
-                items = links.map((l, i) => ({
-                    label: l.quality || l.resolution || `Link ${i+1}`,
-                    url: l.link || l.url || l.download || '#',
-                    size: l.size || '—'
-                }));
-            }
-        } else if (apiKey === 'vkr') {
-            // vkr returns { data: { qualities: [ { text, file } ] } }
-            const qualities = data?.data?.qualities || data?.qualities || data?.files || [];
-            if (Array.isArray(qualities)) {
-                items = qualities.map((q, i) => ({
-                    label: q.text || q.quality || q.label || `Quality ${i+1}`,
-                    url: q.file || q.url || q.download || '#',
-                    size: q.size || '—'
-                }));
-            }
-        }
-
-        // fallback: if no items but data has url
-        if (items.length === 0 && data?.url) {
-            items = [{ label: 'Direct Link', url: data.url, size: data.size || '—' }];
-        }
-        if (items.length === 0 && data?.downloadUrl) {
-            items = [{ label: 'Download', url: data.downloadUrl, size: data.size || '—' }];
-        }
-
-        return items;
-    }
-
-    // ============================================================
-    //  Render quality cards
-    // ============================================================
-    function renderQualities(qualities, sourceApi) {
-        qualityGrid.innerHTML = '';
-        if (!qualities || qualities.length === 0) {
-            qualityGrid.innerHTML = `<div style="grid-column:1/-1; color:#6d7e9e; padding:20px; text-align:center;">No qualities found 😕</div>`;
-            downloadBtn.disabled = true;
-            return;
-        }
-
-        currentQualities = qualities;
-        selectedQualityIndex = -1;
-        downloadBtn.disabled = true;
-
-        qualities.forEach((q, index) => {
-            const card = document.createElement('div');
-            card.className = 'quality-card';
-            card.innerHTML = `
-                <i class="fas fa-video"></i>
-                <div class="label">${q.label}</div>
-                <div class="size">${q.size || '—'}</div>
+            const icon = type === 'error' ? 'fa-exclamation-triangle' :
+                type === 'success' ? 'fa-check-circle' : 'fa-circle';
+            const color = type === 'error' ? '#ff6b6b' :
+                type === 'success' ? '#00c775' : '#4f7cff';
+            statusBar.innerHTML = `
+                <i class="fas ${icon} status-icon" style="color:${color};font-size:${type === 'info' ? '10px' : '18px'};"></i>
+                <span class="status-text">${msg}</span>
             `;
-            card.dataset.index = index;
-            card.addEventListener('click', () => {
-                document.querySelectorAll('.quality-card').forEach(c => c.classList.remove('selected'));
-                card.classList.add('selected');
-                selectedQualityIndex = index;
-                downloadBtn.disabled = false;
-                currentDownloadUrl = q.url;
-                setStatus(`Selected: ${q.label} → ready to download`);
-            });
-            qualityGrid.appendChild(card);
-        });
-
-        sourceLabel.textContent = `source: ${sourceApi}`;
-        qualitySection.classList.add('active');
-        setStatus(`Found ${qualities.length} quality options — select one`);
-    }
-
-    // ============================================================
-    //  Main fetch logic
-    // ============================================================
-    async function handleFetch() {
-        const url = urlInput.value.trim();
-        if (!url) {
-            setStatus('Please paste a valid URL', true);
-            return;
         }
 
-        const apiKey = detectApi(url);
-        setStatus(`Detected ${apiKey} — fetching data...`, false, true);
-        fetchBtn.disabled = true;
-        qualitySection.classList.remove('active');
+        // ================================================================
+        //  DETECT API
+        // ================================================================
+        function detectApi(url) {
+            const u = url.toLowerCase();
+            if (u.includes('youtube.com') || u.includes('youtu.be')) return 'savetube';
+            if (u.includes('hdhub4u') || u.includes('hdhub')) return 'hdhub';
+            if (u.includes('gadgetsweb') || u.includes('hubcloud')) return 'gadgetsweb';
+            if (u.includes('instagram.com') || u.includes('facebook.com') ||
+                u.includes('twitter.com') || u.includes('tiktok')) return 'cobalt';
+            return 'vkr';
+        }
 
-        try {
-            const data = await callApi(apiKey, url);
-            console.log('API response:', data);
+        // ================================================================
+        //  CALL API
+        // ================================================================
+        async function callApi(apiKey, url) {
+            const api = APIS[apiKey];
+            if (!api) throw new Error(`API ${apiKey} not configured`);
 
-            const qualities = parseQualities(data, apiKey);
-            if (qualities.length === 0) {
-                setStatus('No download links found in response. Try another URL.', true);
-                fetchBtn.disabled = false;
+            let endpoint = api.url;
+            const options = {
+                method: api.method,
+                headers: { 'Accept': 'application/json' }
+            };
+
+            if (api.method === 'GET') {
+                const params = new URLSearchParams();
+                if (api.params) {
+                    for (let [key, val] of Object.entries(api.params)) {
+                        let value = val;
+                        if (val === 'MOVIE_PAGE_URL' || val === 'VIDEO_URL') value = url;
+                        params.append(key, value);
+                    }
+                }
+                if (apiKey === 'vkr') {
+                    params.set('vkr', url);
+                }
+                endpoint += '?' + params.toString();
+            } else if (api.method === 'POST') {
+                const body = {};
+                if (api.body) {
+                    for (let [key, val] of Object.entries(api.body)) {
+                        if (val === 'MOVIE_PAGE_URL' || val === 'VIDEO_URL' || val === 'SHORTLINK_URL') {
+                            body[key] = url;
+                        } else {
+                            body[key] = val;
+                        }
+                    }
+                }
+                options.body = JSON.stringify(body);
+                options.headers['Content-Type'] = 'application/json';
+            }
+
+            const response = await fetch(endpoint, options);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return await response.json();
+        }
+
+        // ================================================================
+        //  PARSE QUALITIES
+        // ================================================================
+        function parseQualities(data, apiKey) {
+            let items = [];
+
+            if (apiKey === 'hdhub') {
+                const links = data?.data?.links || data?.links || [];
+                if (Array.isArray(links)) {
+                    items = links.map(l => ({
+                        label: l.quality || l.resolution || 'HD',
+                        url: l.url || l.download || l.link || '#',
+                        size: l.size || '—'
+                    }));
+                }
+            } else if (apiKey === 'savetube' || apiKey === 'cobalt') {
+                const qualities = data?.video?.qualities || data?.qualities || data?.formats || [];
+                if (Array.isArray(qualities)) {
+                    items = qualities.map(q => ({
+                        label: q.quality || q.resolution || q.format || 'Video',
+                        url: q.url || q.downloadUrl || q.link || '#',
+                        size: q.size || '—'
+                    }));
+                } else if (data?.video?.url) {
+                    items = [{ label: 'Video', url: data.video.url, size: data.video.size || '—' }];
+                }
+            } else if (apiKey === 'gadgetsweb') {
+                const links = data?.data?.downloadLinks || data?.downloadLinks || data?.links || [];
+                if (Array.isArray(links)) {
+                    items = links.map(l => ({
+                        label: l.quality || l.resolution || 'Link',
+                        url: l.link || l.url || l.download || '#',
+                        size: l.size || '—'
+                    }));
+                }
+            } else if (apiKey === 'vkr') {
+                const qualities = data?.data?.qualities || data?.qualities || data?.files || [];
+                if (Array.isArray(qualities)) {
+                    items = qualities.map(q => ({
+                        label: q.text || q.quality || q.label || 'Quality',
+                        url: q.file || q.url || q.download || '#',
+                        size: q.size || '—'
+                    }));
+                }
+            }
+
+            // fallback
+            if (items.length === 0 && data?.url) {
+                items = [{ label: 'Direct Link', url: data.url, size: data.size || '—' }];
+            }
+            if (items.length === 0 && data?.downloadUrl) {
+                items = [{ label: 'Download', url: data.downloadUrl, size: data.size || '—' }];
+            }
+
+            return items;
+        }
+
+        // ================================================================
+        //  RENDER QUALITIES
+        // ================================================================
+        function renderQualities(qualities, sourceApi) {
+            qualityGrid.innerHTML = '';
+            currentQualities = qualities;
+            selectedIndex = -1;
+            downloadBtn.disabled = true;
+
+            if (!qualities || qualities.length === 0) {
+                qualityGrid.innerHTML = `
+                    <div style="grid-column:1/-1;color:#5d739b;padding:30px;text-align:center;font-size:15px;">
+                        <i class="fas fa-exclamation-circle" style="font-size:24px;display:block;margin-bottom:10px;color:#4f6a9a;"></i>
+                        No downloadable qualities found
+                    </div>
+                `;
                 return;
             }
 
-            renderQualities(qualities, apiKey);
-            setStatus(`✅ ${qualities.length} quality options loaded from ${apiKey}`);
+            qualities.forEach((q, idx) => {
+                const div = document.createElement('div');
+                div.className = 'quality-item';
+                div.innerHTML = `
+                    <span class="icon"><i class="fas fa-video"></i></span>
+                    <div class="label">${q.label}</div>
+                    <div class="size">${q.size}</div>
+                    <span class="check"><i class="fas fa-check-circle"></i></span>
+                `;
+                div.dataset.index = idx;
+                div.addEventListener('click', () => {
+                    document.querySelectorAll('.quality-item').forEach(el => el.classList.remove('selected'));
+                    div.classList.add('selected');
+                    selectedIndex = idx;
+                    currentDownloadUrl = q.url;
+                    downloadBtn.disabled = false;
+                    setStatus(`✅ Selected: ${q.label} — ready to download`, 'success');
+                });
+                qualityGrid.appendChild(div);
+            });
 
-        } catch (err) {
-            console.error(err);
-            setStatus(`Error: ${err.message || 'Failed to fetch from API'}`, true);
-        } finally {
-            fetchBtn.disabled = false;
+            sourceTag.textContent = sourceApi;
+            resultsSection.classList.add('active');
+            setStatus(`✅ ${qualities.length} quality options found — select one`, 'success');
         }
-    }
 
-    // ============================================================
-    //  Download selected
-    // ============================================================
-    function handleDownload() {
-        if (selectedQualityIndex === -1 || !currentDownloadUrl) {
-            setStatus('Please select a quality first', true);
-            return;
+        // ================================================================
+        //  MAIN FETCH
+        // ================================================================
+        async function handleFetch() {
+            const url = urlInput.value.trim();
+            if (!url) {
+                setStatus('⚠️ Please paste a valid URL first', 'error');
+                return;
+            }
+
+            const apiKey = detectApi(url);
+            setStatus(`🔍 Detected ${apiKey} — fetching data...`, 'info', true);
+            fetchBtn.disabled = true;
+            resultsSection.classList.remove('active');
+
+            try {
+                const data = await callApi(apiKey, url);
+                console.log('📦 API Response:', data);
+
+                const qualities = parseQualities(data, apiKey);
+                if (qualities.length === 0) {
+                    setStatus('❌ No download links found. Try a different URL.', 'error');
+                    fetchBtn.disabled = false;
+                    return;
+                }
+
+                renderQualities(qualities, apiKey);
+
+            } catch (err) {
+                console.error(err);
+                setStatus(`❌ Error: ${err.message || 'Failed to fetch from API'}`, 'error');
+            } finally {
+                fetchBtn.disabled = false;
+            }
         }
-        if (currentDownloadUrl === '#') {
-            setStatus('Download URL not available', true);
-            return;
+
+        // ================================================================
+        //  DOWNLOAD
+        // ================================================================
+        function handleDownload() {
+            if (selectedIndex === -1 || !currentDownloadUrl || currentDownloadUrl === '#') {
+                setStatus('⚠️ Please select a valid quality first', 'error');
+                return;
+            }
+            window.open(currentDownloadUrl, '_blank');
+            setStatus(`⬇️ Downloading: ${currentQualities[selectedIndex].label}`, 'success');
         }
-        // Open in new tab / trigger download
-        window.open(currentDownloadUrl, '_blank');
-        setStatus(`⬇️ Download started: ${currentQualities[selectedQualityIndex].label}`);
-    }
 
-    // ============================================================
-    //  Event listeners
-    // ============================================================
-    fetchBtn.addEventListener('click', handleFetch);
-    downloadBtn.addEventListener('click', handleDownload);
+        // ================================================================
+        //  EVENT LISTENERS
+        // ================================================================
+        fetchBtn.addEventListener('click', handleFetch);
+        downloadBtn.addEventListener('click', handleDownload);
 
-    // Enter key on input
-    urlInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') handleFetch();
-    });
+        urlInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') handleFetch();
+        });
 
-    // initial status
-    setStatus('Ready — paste a link and hit Fetch');
-</script>
+        // initial status
+        setStatus('Ready — paste a link and hit Fetch', 'info');
+    </script>
 
 </body>
 </html>
